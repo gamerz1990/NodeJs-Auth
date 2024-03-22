@@ -64,6 +64,32 @@ Headers: Authorization: Bearer <TOKEN>
 Description: Update the profile of the authenticated user change avatar ,name and email.
 
 
+
+## Real-Time Notifications with Socket.io
+
+This project uses Socket.io to send real-time notifications to users. To set up and use notifications:
+
+1. Ensure Socket.io is installed both on the server and the client-side of your project.
+2. for now server, emit events to connected clients when new user logs in or when they close the next.js app using `socket.emit('notification', { message: 'Your notification message' });`
+
+3. On the client-side, listen for notifications with:
+   ```javascript
+   useEffect(() => {
+     const socket = io(process.env.NEXT_PUBLIC_API_BASE_URL, {
+       auth: {
+         token: localStorage.getItem('token'), // Authentication token 
+       },
+     });
+
+     socket.on('notification', (data) => {
+       console.log('Notification received:', data.message);
+       // Handle the notification
+     });
+
+     return () => socket.disconnect();
+   }, []);
+
+
 ### Testing the API
 Import the provided Postman collection to test the API endpoints.
 
