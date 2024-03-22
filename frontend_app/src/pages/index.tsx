@@ -75,7 +75,7 @@ const HomePage = () => {
         ))}
       </div>
             </div>
-            {/* Repeat for other features */}
+           
           </div>
         </section>
       </main>
